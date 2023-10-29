@@ -29,7 +29,7 @@ public class AccountRepositoryJdbcImpl implements AccountRepository{
         System.out.println("Done");
     }
 
-    public String getUserByUsername(User user) throws SQLException {
+    public boolean getUserByUsername(String username, String password, User user) throws SQLException {
         String sql = "SELECT * FROM homework3 WHERE username = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, user.getUsernameOfUser());
@@ -38,8 +38,12 @@ public class AccountRepositoryJdbcImpl implements AccountRepository{
         while (resultSet.next()){
             s = resultSet.getString("username") + " " + resultSet.getString("password_hash");
         }
+        if(s.equals(username+ " " + password)){
+            return true;
+        }else {
+            return false;
+        }
 
-        return s;
     }
 
 }

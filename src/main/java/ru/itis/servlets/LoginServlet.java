@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
                 .build();
 
         try {
-            if(authenticateUser(accountUsername, accountPassword, user)){
+            if(accountRepository.getUserByUsername(accountUsername, accountPassword, user)){
                 response.sendRedirect("/afterlogin");
             }else {
                 response.sendRedirect("/login");
@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-    private boolean authenticateUser(String username, String password, User user) throws SQLException {
+   /* private boolean authenticateUser(String username, String password, User user) throws SQLException {
         boolean auth = false;
 
         if(accountRepository.getUserByUsername(user).equals(username+ " " + password)){
@@ -77,6 +77,6 @@ public class LoginServlet extends HttpServlet {
         else {
             return auth;
         }
-    }
+    }*/
 }
 

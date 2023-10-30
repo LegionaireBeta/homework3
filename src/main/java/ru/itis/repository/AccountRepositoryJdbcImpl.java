@@ -29,16 +29,19 @@ public class AccountRepositoryJdbcImpl implements AccountRepository{
         System.out.println("Done");
     }
 
-    public boolean getUserByUsername(String username, String password, User user) throws SQLException {
+    public boolean login(String username, String password, User user) throws SQLException {
         String sql = "SELECT * FROM homework3 WHERE username = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, user.getUsernameOfUser());
         ResultSet resultSet = preparedStatement.executeQuery();
-        String s = "";
+        String userAcc = "";
+        String passAcc = "";
+
         while (resultSet.next()){
-            s = resultSet.getString("username") + " " + resultSet.getString("password_hash");
+            userAcc = resultSet.getString("username");
+            passAcc = resultSet.getString("password_hash");
         }
-        if(s.equals(username+ " " + password)){
+        if(userAcc.equals(username) && passAcc.equals(password)){
             return true;
         }else {
             return false;

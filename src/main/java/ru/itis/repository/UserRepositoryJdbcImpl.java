@@ -39,7 +39,7 @@ public class UserRepositoryJdbcImpl implements UserRepository {
                         .build();
 
                 result.add(user);
-                return result;
+
             }
             return result;
         }catch (SQLException e){

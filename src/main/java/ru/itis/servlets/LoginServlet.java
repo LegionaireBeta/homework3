@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
         String accountUsername = request.getParameter("username");
         String accountPassword = request.getParameter("password");
 
+
         User user = User.builder()
                 .usernameOfUser(accountUsername)
                 .passwordOfUser(accountPassword)
@@ -57,7 +58,7 @@ public class LoginServlet extends HttpServlet {
             if(accountRepository.login(accountUsername, accountPassword, user)){
                 response.sendRedirect("/afterlogin");
             }else {
-                response.sendRedirect("/login");
+                response.sendRedirect("/login?error=1");
             }
         } catch (SQLException e) {
 

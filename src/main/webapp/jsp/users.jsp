@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ru.itis.model.User" %>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: VAHABI
@@ -23,18 +25,15 @@
                 <th>SURNAME</th>
                 <th>AGE</th>
             </tr>
-            <%
-                List<User> user = (List<User>) request.getAttribute("usersForJsp");
-                for(int i=0; i<user.size(); i++) {
-            %>
+            <c:forEach items="${usersForJsp}" var="user">
                 <tr>
-                    <td><%=user.get(i).getId()%></td>
-                    <td><%=user.get(i).getUsernameOfUser()%></td>
-                    <td><%=user.get(i).getNameOfUser()%></td>
-                    <td><%=user.get(i).getSurnameOfUser()%></td>
-                    <td><%=user.get(i).getAgeOfUser()%></td>
+                    <td>${user.id}</td>
+                    <td>${user.nameOfUser}</td>
+                    <td>${user.surnameOfUser}</td>
+                    <td>${user.usernameOfUser}</td>
+                    <td>${user.ageOfUser}</td>
                 </tr>
-            <%}%>
+            </c:forEach>
         </table>
     </div>
 </body>
